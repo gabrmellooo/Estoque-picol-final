@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,6 @@ namespace Estoque_picole
         {
             InitializeComponent();
         }
-
-        private string Conexao = "server=localhost;user=root;password=root;database=picole";
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +92,69 @@ namespace Estoque_picole
             dpValidade.SelectedDate = null;
         }
 
+        private void dgEstoque_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction != DataGridEditAction.Commit) return;
+
+            var linha = e.Row.Item as DataRowView;
+            if (linha == null) return;
+
+            string? coluna = e.Column.Header?.ToString();
+            if (string.IsNullOrEmpty(coluna)) return;
+
+            var elemento = e.EditingElement as TextBox;
+            if (elemento == null) return;
+
+            string novoValor = elemento.Text;
+            int idProduto = Convert.ToInt32(linha["id"]);
+
+            string query = "";
+
+            switch (coluna)
+            {
+                case "Nome":
+                    query = "UPDATE produtos SET nome = @valor WHERE id = @id";
+                    break;
+                case "Sabor":
+                    query = "UPDATE produtos SET sabor = @valor WHERE id = @id";
+                    break;
+                case "Quantidade":
+                    query = "UPDATE produtos SET quantidade = @valor WHERE id = @id";
+                    break;
+                case "Preço":
+                    query = "UPDATE produtos SET preco = @valor WHERE id = @id";
+                    break;
+                case "Validade":
+                    query = "UPDATE produtos SET validade = @valor WHERE id = @id";
+                    break;
+                default:
+                    return;
+            }
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, ConexaoDp.Conexao))
+                {
+                    cmd.Parameters.AddWithValue("@id", idProduto);
+
+                    // Conversão de tipos
+                    if (coluna == "Quantidade")
+                        cmd.Parameters.AddWithValue("@valor", Convert.ToInt32(novoValor));
+                    else if (coluna == "Preço")
+                        cmd.Parameters.AddWithValue("@valor", Convert.ToDecimal(novoValor));
+                    else if (coluna == "Validade")
+                        cmd.Parameters.AddWithValue("@valor", Convert.ToDateTime(novoValor));
+                    else
+                        cmd.Parameters.AddWithValue("@valor", novoValor);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao atualizar produto: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
 
         private void btnVoltar_Click_1(object sender, RoutedEventArgs e)

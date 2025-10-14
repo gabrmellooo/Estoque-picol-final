@@ -9,64 +9,71 @@
       Title="Cadastro">
 
 
-    <Grid Background="#FFF0F0F0" Margin="0,0,0,-1" HorizontalAlignment="Left" Width="797">
+    <Grid Background="#FFF0F0F0" Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Título -->
+        <!-- 🧁 Título -->
         <TextBlock Text="🍦 Cadastro de Picolés"
-                   FontSize="28"
+                   FontSize="32"
                    FontWeight="Bold"
                    Foreground="#333"
                    HorizontalAlignment="Center"
-                   Margin="0,20,0,20"/>
+                   Margin="0,25,0,25"/>
 
-        <!-- Formulário -->
-        <Grid Grid.Row="1" Margin="0,0,0,0">
+        <!-- 📋 Formulário -->
+        <Grid Grid.Row="1" Margin="30,0,30,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Margin="10">
-                <TextBlock Text="Nome do Produto:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtNome" Height="30" Margin="0,0,0,15"/>
+            <!-- Coluna 1 -->
+            <StackPanel Grid.Column="0" Margin="20">
+                <TextBlock Text="Nome do Produto:" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtNome" Height="40" FontSize="16" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Sabor:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtSabor" Height="30" Margin="0,0,0,15"/>
+                <TextBlock Text="Sabor:" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtSabor" Height="40" FontSize="16" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Quantidade:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtQuantidade" Height="30" Margin="0,0,0,15"/>
+                <TextBlock Text="Quantidade:" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtQuantidade" Height="40" FontSize="16" Margin="0,0,0,20"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="1" Margin="10">
-                <TextBlock Text="Preço Unitário:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtPreco" Height="30" Margin="0,0,0,15"/>
+            <!-- Coluna 2 -->
+            <StackPanel Grid.Column="1" Margin="20">
+                <TextBlock Text="Preço Unitário:" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtPreco" Height="40" FontSize="16" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Data de Validade:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <DatePicker x:Name="dpValidade" Height="30" Margin="0,0,0,15"/>
+                <TextBlock Text="Data de Validade:" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,5"/>
+                <DatePicker x:Name="dpValidade" Height="40" FontSize="16" Margin="0,0,0,20"/>
             </StackPanel>
         </Grid>
 
-        <!-- Botões -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="240,282,0,47" Grid.RowSpan="2">
-            <Button x:Name="btnSalvar" Content="💾 Salvar"
-                    Width="140" Height="45"
+        <!-- 🔘 Botões -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,30">
+            <Button x:Name="btnSalvar"
+                    Content="💾 Salvar"
+                    Width="180" Height="55"
                     Background="#5AAFE4"
                     Foreground="White"
-                    FontSize="16"
+                    FontSize="18"
+                    FontWeight="SemiBold"
                     Margin="10,0"
                     Click="btnSalvar_Click"/>
-            <Button x:Name="btnVoltar" Content="↩ Voltar"
-                    Width="140" Height="45"
+
+            <Button x:Name="btnVoltar"
+                    Content="↩ Voltar"
+                    Width="180" Height="55"
                     Background="#8FD26D"
                     Foreground="White"
-                    FontSize="16"
-                    Margin="10,0" Click="btnVoltar_Click_1"
-                   />
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Margin="10,0"
+                    Click="btnVoltar_Click_1"/>
         </StackPanel>
     </Grid>
 </Page>

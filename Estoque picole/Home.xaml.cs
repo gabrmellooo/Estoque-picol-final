@@ -34,5 +34,15 @@ namespace Estoque_picole
         {
             NavigationService.Navigate(new Estoque());
         }
+
+        private void btnSair_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnRelatorios_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Relatorio());
+        }
     }
 }
