@@ -18,6 +18,10 @@ namespace Estoque_picole
     /// <summary>
     /// Interação lógica para Home.xam
     /// </summary>
+    /// 
+
+
+
     public partial class Home : Page
     {
         public Home()

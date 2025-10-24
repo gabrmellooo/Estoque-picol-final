@@ -22,18 +22,17 @@
             <StackPanel Margin="0,60,0,0">
                 <!-- Tabela de Estoque -->
                 <DataGrid x:Name="dgEstoque"
-                          AutoGenerateColumns="False"
+                        Width="1000"
+                          Height="600"
+                              AutoGenerateColumns="False"
                           HeadersVisibility="Column"
                           CanUserAddRows="False"
                           IsReadOnly="False"
-                          Height="300"
-                          BorderBrush="#DDD"
-                          Background="White"
-                          AlternatingRowBackground="#F9F9F9"
-                          Margin="0,0,0,15"
-                          CellEditEnding="dgEstoque_CellEditEnding">
-
-
+                       BorderBrush="#DDD"
+                           Background="White"
+          AlternatingRowBackground="#F9F9F9"
+          Margin="0,0,0,15"
+          CellEditEnding="dgEstoque_CellEditEnding" >
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
@@ -56,17 +55,8 @@
                             Width="180" Height="50" Margin="10,0"
                             Background="#73D673" Foreground="White"
                             FontSize="16" Click="btnVoltar_Click"/>
-                    
-                </StackPanel>
 
-                <!-- Valor Total -->
-                <TextBlock x:Name="txtValorTotal" 
-                           Text="R$ 0,00" 
-                           FontWeight="Bold" 
-                           FontSize="18" 
-                           Margin="10"
-                           HorizontalAlignment="Center"
-                           Foreground="#333"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

@@ -16,10 +16,14 @@ namespace Estoque_picole
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         public MainWindow()
         {
+
             InitializeComponent();
             ConexaoDp.AbrirConexao("server=localhost;user=root;password=root;database=picole");
+
         }
     }
 }

@@ -8,7 +8,89 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Relatorio">
 
-    <Grid>
-        
+    <Grid Background="#f0f4f8" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Cabeçalho -->
+        <DockPanel Grid.Row="0" Margin="0,0,0,20">
+            <Button x:Name="btnVoltar"
+                    Content="⟵ Voltar"
+                    Width="120"
+                    Height="40"
+                    Background="#FF73D673"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="0,0,20,0"
+                    Click="btnVoltar_Click"/>
+
+            <TextBlock Text="Controle de Estoque de Picolés"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="#223244"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <!-- DataGrid principal -->
+        <DataGrid x:Name="dgEstoque"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  Margin="0,0,0,20"
+                  FontSize="18"
+                  RowHeight="40"
+                  CellEditEnding="dgEstoque_CellEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="2*"/>
+                <DataGridTextColumn Header="Sabor" Binding="{Binding Sabor}" Width="*"/>
+                <DataGridTextColumn Header="Quantidade" Binding="{Binding Quantidade}" Width="*"/>
+                <DataGridTextColumn Header="Preço" Binding="{Binding Preco}" Width="*"/>
+                <DataGridTextColumn Header="Valor Total" Binding="{Binding ValorTotal}" Width="*"/>
+                <DataGridTextColumn Header="Validade" Binding="{Binding Validade, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Totais -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+            <TextBlock Text="Total de Itens:" FontSize="20" FontWeight="Bold" Foreground="#223244" Margin="0,0,10,0"/>
+            <TextBlock x:Name="txtTotalItens" FontSize="20" FontWeight="Bold" Foreground="#223244" Margin="0,0,30,0"/>
+            <TextBlock Text="Valor Total em Estoque:" FontSize="20" FontWeight="Bold" Foreground="#223244" Margin="0,0,10,0"/>
+            <TextBlock x:Name="txtValorTotal" FontSize="20" FontWeight="Bold" Foreground="#223244"/>
+        </StackPanel>
+
+        <!-- Histórico de alterações -->
+        <StackPanel Grid.Row="3">
+            <TextBlock Text="Histórico de Alterações"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#223244"
+                       Margin="0,10,0,10"/>
+
+            <DataGrid x:Name="dgHistorico"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      FontSize="16"
+                      RowHeight="35">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Produto" Binding="{Binding Produto}" Width="2*"/>
+                    <DataGridTextColumn Header="De" Binding="{Binding QuantidadeAntiga}" Width="*"/>
+                    <DataGridTextColumn Header="Para" Binding="{Binding QuantidadeNova}" Width="*"/>
+                    <DataGridTextColumn Header="Data da Alteração" Binding="{Binding DataAlteracao, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </Page>
