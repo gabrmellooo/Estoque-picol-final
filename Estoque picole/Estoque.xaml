@@ -1,63 +1,64 @@
-﻿<Page x:Class="Estoque_picole.Estoque"
+﻿<Page x:Class="Estoque_picole.EstoqueVisualizacao"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Estoque_picole"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Estoque">
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="EstoqueVisualizacao"
+      Background="#FFF0F0F0">
 
-    <Grid Background="#f4f4f4">
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="750">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <!-- Título -->
-            <TextBlock Text="📦 Controle de Estoque"
-                       FontSize="26"
+        <Grid Grid.Row="0" Margin="0,0,0,20" Height="80">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnVoltar"
+                    Content="⟵ Voltar"
+                    Width="180"
+                    Height="60"
+                    Background="#FF73D673"
+                    Foreground="White"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Click="btnVoltar_Click"/>
+
+            <TextBlock Grid.Column="1"
+                       Text="Estoque de Picolés"
+                       FontSize="40"
                        FontWeight="Bold"
-                       Foreground="#333"
+                       Foreground="#223244"
                        HorizontalAlignment="Center"
-                       Margin="0,0,0,20"/>
-
-            <StackPanel Margin="0,60,0,0">
-                <!-- Tabela de Estoque -->
-                <DataGrid x:Name="dgEstoque"
-                        Width="1000"
-                          Height="600"
-                              AutoGenerateColumns="False"
-                          HeadersVisibility="Column"
-                          CanUserAddRows="False"
-                          IsReadOnly="False"
-                       BorderBrush="#DDD"
-                           Background="White"
-          AlternatingRowBackground="#F9F9F9"
-          Margin="0,0,0,15"
-          CellEditEnding="dgEstoque_CellEditEnding" >
-
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
-                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*"/>
-                        <DataGridTextColumn Header="Sabor" Binding="{Binding Sabor}" Width="150"/>
-                        <DataGridTextColumn Header="Quantidade" Binding="{Binding Quantidade}" Width="100"/>
-                        <DataGridTextColumn Header="Preço" Binding="{Binding Preco}" Width="100" />
-                        <DataGridTextColumn Header="Validade" Binding="{Binding Validade, StringFormat=\{0:dd/MM/yyyy\}}" Width="120"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-                <!-- Botões -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <Button x:Name="btnExcluir" Content="🗑 Excluir Selecionado"
-                            Width="220" Height="50" Margin="10,0"
-                            Background="#E65A5A" Foreground="White"
-                            FontSize="16" Click="btnExcluir_Click"/>
-
-                    <Button x:Name="btnVoltar" Content="↩ Voltar"
-                            Width="180" Height="50" Margin="10,0"
-                            Background="#73D673" Foreground="White"
-                            FontSize="16" Click="btnVoltar_Click"/>
-
-                </StackPanel>
-            </StackPanel>
+                       VerticalAlignment="Center"/>
         </Grid>
+
+        <DataGrid x:Name="dgEstoque"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  IsReadOnly="True"
+                  FontSize="24"
+                  RowHeight="50">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="2*"/>
+                <DataGridTextColumn Header="Sabor" Binding="{Binding Sabor}" Width="*"/>
+                <DataGridTextColumn Header="Quantidade" Binding="{Binding Quantidade}" Width="*"/>
+                <DataGridTextColumn Header="Preço" Binding="{Binding Preco}" Width="*"/>
+                <DataGridTextColumn Header="Valor Total" Binding="{Binding ValorTotal}" Width="*"/>
+                <DataGridTextColumn Header="Validade" Binding="{Binding Validade, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

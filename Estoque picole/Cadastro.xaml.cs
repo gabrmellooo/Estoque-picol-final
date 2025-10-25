@@ -1,25 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Estoque_picole
 {
-    /// <summary>
-    /// Interação lógica para Cadastro.xam
-    /// </summary>
     public partial class Cadastro : Page
     {
         public Cadastro()
@@ -35,7 +22,6 @@ namespace Estoque_picole
             decimal preco;
             DateTime validade;
 
-            // validação simples
             if (!int.TryParse(txtQuantidade.Text, out quantidade))
             {
                 MessageBox.Show("Quantidade inválida!");
@@ -53,33 +39,39 @@ namespace Estoque_picole
                 MessageBox.Show("Selecione uma data de validade!");
                 return;
             }
+
             validade = dpValidade.SelectedDate.Value;
 
-
-            // comando SQL
             string query = "INSERT INTO Produtos (Nome, Sabor, Quantidade, Preco, Validade) " +
                            "VALUES (@Nome, @Sabor, @Quantidade, @Preco, @Validade)";
 
             try
             {
-                    using (MySqlCommand cmd = new MySqlCommand(query, ConexaoDp.Conexao))
-                    {
-                        cmd.Parameters.AddWithValue("@Nome", nome);
-                        cmd.Parameters.AddWithValue("@Sabor", sabor);
-                        cmd.Parameters.AddWithValue("@Quantidade", quantidade);
-                        cmd.Parameters.AddWithValue("@Preco", preco);
-                        cmd.Parameters.AddWithValue("@Validade", validade);
+                if (ConexaoDp.Conexao.State != ConnectionState.Open)
+                    ConexaoDp.Conexao.Open();
 
-                        cmd.ExecuteNonQuery();
-                    }
+                using (MySqlCommand cmd = new MySqlCommand(query, ConexaoDp.Conexao))
+                {
+                    cmd.Parameters.AddWithValue("@Nome", nome);
+                    cmd.Parameters.AddWithValue("@Sabor", sabor);
+                    cmd.Parameters.AddWithValue("@Quantidade", quantidade);
+                    cmd.Parameters.AddWithValue("@Preco", preco);
+                    cmd.Parameters.AddWithValue("@Validade", validade);
 
-                    MessageBox.Show("Cadastro salvo com sucesso!");
-                    LimparCampos();
-                
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Cadastro salvo com sucesso!");
+                LimparCampos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao salvar: " + ex.Message);
+            }
+            finally
+            {
+                if (ConexaoDp.Conexao.State == ConnectionState.Open)
+                    ConexaoDp.Conexao.Close();
             }
         }
 
@@ -99,7 +91,7 @@ namespace Estoque_picole
             var linha = e.Row.Item as DataRowView;
             if (linha == null) return;
 
-            string? coluna = e.Column.Header?.ToString();
+            string coluna = e.Column.Header?.ToString();
             if (string.IsNullOrEmpty(coluna)) return;
 
             var elemento = e.EditingElement as TextBox;
@@ -133,11 +125,13 @@ namespace Estoque_picole
 
             try
             {
+                if (ConexaoDp.Conexao.State != ConnectionState.Open)
+                    ConexaoDp.Conexao.Open();
+
                 using (MySqlCommand cmd = new MySqlCommand(query, ConexaoDp.Conexao))
                 {
                     cmd.Parameters.AddWithValue("@id", idProduto);
 
-                    // Conversão de tipos
                     if (coluna == "Quantidade")
                         cmd.Parameters.AddWithValue("@valor", Convert.ToInt32(novoValor));
                     else if (coluna == "Preço")
@@ -154,8 +148,12 @@ namespace Estoque_picole
             {
                 MessageBox.Show($"Erro ao atualizar produto: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                if (ConexaoDp.Conexao.State == ConnectionState.Open)
+                    ConexaoDp.Conexao.Close();
+            }
         }
-
 
         private void btnVoltar_Click_1(object sender, RoutedEventArgs e)
         {

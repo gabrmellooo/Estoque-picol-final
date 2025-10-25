@@ -6,55 +6,70 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:Estoque_picole"
     mc:Ignorable="d" 
-    d:DesignHeight="450" d:DesignWidth="800"
-    Title="Home">
+    d:DesignHeight="1080" d:DesignWidth="1920"
+    Title="Home"
+    Background="#FFF0F0F0">
 
-    <Grid Background="#FFF0F0F0" Margin="0,-1,0,3" HorizontalAlignment="Center" Width="792">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Título -->
-        <TextBlock Text="🍧 Fábrica de Picolés"
-               FontSize="30"
-               FontWeight="Bold"
-               Foreground="#333"
-               HorizontalAlignment="Center"
-               Margin="0,20,0,5"/>
-
-        <TextBlock Text="Sistema de Controle de Estoque"
-               FontSize="16"
-               Foreground="#555"
-               HorizontalAlignment="Center"
-               Margin="0,0,0,30"
-               Grid.Row="0"/>
+        <StackPanel Grid.Row="0" Margin="0,40,0,40">
+            <TextBlock Text="🍧 Fábrica de Picolés"
+                       FontSize="60"
+                       FontWeight="Bold"
+                       Foreground="#333"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="Sistema de Controle de Estoque"
+                       FontSize="26"
+                       Foreground="#555"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
 
         <!-- Menu de botões -->
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="300">
-            <Button x:Name="btnCadastro" Content="📦 Cadastro de Picolés"
-                Height="55" Margin="0,10"
-                FontSize="16"
-                Background="#5AAFE4" Foreground="White"
-                BorderThickness="0" Click="btnCadastro_Click_1" />
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400">
 
-            <Button x:Name="btnEstoque" Content="📋 Ver Estoque"
-                Height="55" Margin="0,10"
-                FontSize="16"
-                Background="#8FD26D" Foreground="White"
-                BorderThickness="0" Click="btnEstoque_Click"/>
+            <Button x:Name="btnCadastro" Content="📦 Cadastro de Picolés"
+                    Height="70"
+                    FontSize="26"
+                    Background="#5AAFE4"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    Margin="0,0,0,20"
+                    Click="btnCadastro_Click_1"/>
 
             <Button x:Name="btnRelatorios" Content="📊 Relatórios"
-                Height="55" Margin="0,10"
-                FontSize="16"
-                Background="#A17DE0" Foreground="White"
-                BorderThickness="0" Click="btnRelatorios_Click" />
+                    Height="70"
+                    FontSize="26"
+                    Background="#A17DE0"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    Margin="0,0,0,20"
+                    Click="btnRelatorios_Click"/>
+
+            <Button x:Name="btnEstoque" Content="📋 Ver Estoque"
+                    Height="70"
+                    FontSize="26"
+                    Background="#8FD26D"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    Margin="0,0,0,20"
+                    Click="btnEstoque_Click"/>
 
             <Button x:Name="btnSair" Content="❌ Sair"
-                Height="55" Margin="0,20"
-                FontSize="16"
-                Background="#EF5350" Foreground="White"
-                BorderThickness="0" Click="btnSair_Click"/>
+                    Height="70"
+                    FontSize="26"
+                    Background="#EF5350"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    Click="btnSair_Click"/>
         </StackPanel>
     </Grid>
 </Page>

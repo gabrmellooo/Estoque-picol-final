@@ -15,13 +15,6 @@ using System.Windows.Shapes;
 
 namespace Estoque_picole
 {
-    /// <summary>
-    /// Interação lógica para Home.xam
-    /// </summary>
-    /// 
-
-
-
     public partial class Home : Page
     {
         public Home()
@@ -34,11 +27,6 @@ namespace Estoque_picole
             NavigationService.Navigate(new Cadastro());
         }
 
-        private void btnEstoque_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Estoque());
-        }
-
         private void btnSair_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -47,6 +35,11 @@ namespace Estoque_picole
         private void btnRelatorios_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Relatorio());
+        }
+
+        private void btnEstoque_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EstoqueVisualizacao());
         }
     }
 }
