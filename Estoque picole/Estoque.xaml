@@ -50,7 +50,7 @@
                   CanUserDeleteRows="False"
                   IsReadOnly="True"
                   FontSize="24"
-                  RowHeight="50">
+                  RowHeight="50" SelectionChanged="dgEstoque_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="2*"/>
                 <DataGridTextColumn Header="Sabor" Binding="{Binding Sabor}" Width="*"/>

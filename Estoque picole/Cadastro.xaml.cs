@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
+
 namespace Estoque_picole
 {
     public partial class Cadastro : Page
