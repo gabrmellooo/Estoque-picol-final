@@ -43,7 +43,7 @@ namespace Estoque_picole
 
             validade = dpValidade.SelectedDate.Value;
 
-            string query = "INSERT INTO Produtos (Nome, Sabor, Quantidade, Preco, Validade) " +
+            string query = "INSERT INTO produtos (Nome, Sabor, Quantidade, Preco, Validade) " +
                            "VALUES (@Nome, @Sabor, @Quantidade, @Preco, @Validade)";
 
             try
