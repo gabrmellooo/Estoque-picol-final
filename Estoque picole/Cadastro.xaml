@@ -46,7 +46,7 @@
                 <TextBox x:Name="txtPreco" Height="60" FontSize="24" Margin="0,0,0,30"/>
 
                 <TextBlock Text="Data de Validade:" FontWeight="SemiBold" FontSize="24" Margin="0,0,0,10"/>
-                <DatePicker x:Name="dpValidade" Height="60" FontSize="24" Margin="0,0,0,30"/>
+                <DatePicker x:Name="dpValidade" Height="60" FontSize="28" Margin="0,0,0,30"/>
             </StackPanel>
         </Grid>
 

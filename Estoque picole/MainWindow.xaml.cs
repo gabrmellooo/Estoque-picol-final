@@ -20,7 +20,7 @@ namespace Estoque_picole
 
             InitializeComponent();
             ConexaoDp.AbrirConexao("server=localhost;user=root;password=root;database=picole");
-
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
         }
     }
 }

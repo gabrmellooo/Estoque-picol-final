@@ -57,6 +57,17 @@
                        Foreground="#223244"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
+            <Button x:Name="Reset_historico"
+                Content="Resetar histórico"
+                Width="220"
+                Height="60"
+                Background="#FFF1C804"
+                Foreground="White"
+                FontSize="24"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"
+                Margin="53,441,0,-421"
+                Click="btnResetclick" Grid.Column="1"/>
         </Grid>
 
 
@@ -73,7 +84,7 @@
                 <DataGridTextColumn Header="Sabor" Binding="{Binding Sabor}" Width="*"/>
                 <DataGridTextColumn Header="Quantidade" Binding="{Binding Quantidade}" Width="*"/>
                 <DataGridTextColumn Header="Preço" Binding="{Binding Preco}" Width="*"/>
-                <DataGridTextColumn Header="Valor Total" Binding="{Binding ValorTotal}" Width="*"/>
+                <DataGridTextColumn Header="Valor Total" Binding="{Binding ValorTotal}" Width="*" FontWeight="Bold"/>
                 <DataGridTextColumn Header="Validade" Binding="{Binding Validade, StringFormat={}{0:dd/MM/yyyy}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

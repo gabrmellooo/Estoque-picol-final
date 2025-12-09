@@ -2,9 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Navigation;
+using System.Globalization;
+using System.Windows.Data;
+
 
 namespace Estoque_picole
 {
@@ -221,6 +226,49 @@ namespace Estoque_picole
             {
                 if (ConexaoDp.Conexao.State == ConnectionState.Open)
                     ConexaoDp.Conexao.Close();
+            }
+        }
+
+        private void btnResetclick(object sender, RoutedEventArgs e)
+        {
+            ResetarHistorico();
+        }
+
+        private void ResetarHistorico()
+        {
+            var resp = MessageBox.Show(
+                "Aviso: Esta ação irá apagar todo o histórico de alterações. Deseja continuar?",
+                "Confirmar Resetar Histórico",
+                MessageBoxButton.OKCancel,
+                MessageBoxImage.Warning
+            );
+
+            if (resp == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+            if (resp == MessageBoxResult.OK)
+            {
+                try
+                {
+                    string sql = "TRUNCATE TABLE historico";
+                    using (MySqlCommand comando = new MySqlCommand(sql, ConexaoDp.Conexao))
+                    {
+                        if (ConexaoDp.Conexao.State != ConnectionState.Open)
+                            ConexaoDp.Conexao.Open();
+                        comando.ExecuteNonQuery();
+                    }
+                    CarregarHistorico();       // Atualiza o DataGrid após resetar o histórico
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao resetar histórico: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    if (ConexaoDp.Conexao.State == ConnectionState.Open)
+                        ConexaoDp.Conexao.Close();
+                }
             }
         }
     }

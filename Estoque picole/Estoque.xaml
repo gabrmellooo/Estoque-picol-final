@@ -41,6 +41,18 @@
                        Foreground="#223244"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
+            <Button x:Name="bnt_salvar"
+                Content="Salvar em PDF"
+                Width="180"
+                Height="60"
+                Background="#FFFF5708"
+                Foreground="White"
+                FontSize="24"
+                FontWeight="Bold"
+                BorderThickness="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Click="btnsalvar_Click" Grid.Column="1" Margin="1497,0,0,10"/>
         </Grid>
 
         <DataGrid x:Name="dgEstoque"
@@ -57,7 +69,7 @@
                 <DataGridTextColumn Header="Quantidade" Binding="{Binding Quantidade}" Width="*"/>
                 <DataGridTextColumn Header="Preço" Binding="{Binding Preco}" Width="*"/>
                 <DataGridTextColumn Header="Valor Total" Binding="{Binding ValorTotal}" Width="*"/>
-                <DataGridTextColumn Header="Validade" Binding="{Binding Validade, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Width="*"/>
+                <DataGridTextColumn Header="Validade" Binding="{Binding Validade, StringFormat={}{0:dd/MM/yyyy}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
